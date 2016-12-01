@@ -7,11 +7,13 @@ mongo.connect(url, function(err, db) {
   /* Task 1: Comment out the first prompt and add another prompt
   to let the user view information about a specific restaurant, by entering a name.  */
   var specificRestaurant = prompt("Please, enter the name of the restaurant you are looking for...");
-    if (specificRestaurant == "name") {
-          collection.find ({"name": specificRestaurant}).toArray(function(err, doc) {
-          console.log(name); 
-           });
- 
+  collection.find().forEach(function(doc) {
+                           if (specificRestaurant == doc.name) {
+                            
+                               console.log(doc.name); 
+
+                           
+                 
     /* Task 2: Create a prompt for users to add their own restaurants.*/
      } else {
           console.log ("Hmm, we don't recognize that restaurant name, would you like to add it?");
@@ -29,4 +31,6 @@ mongo.connect(url, function(err, db) {
           console.log(doc);
          });
       }
+  });
+
 });
