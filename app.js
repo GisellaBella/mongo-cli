@@ -7,12 +7,12 @@ mongo.connect(url, function(err, db) {
   /* Task 1: Comment out the first prompt and add another prompt
   to let the user view information about a specific restaurant, by entering a name.  */
   var specificRestaurant = prompt("Please, enter the name of the restaurant you are looking for...");
-  collection.find().forEach(function(doc) {
-                           if (specificRestaurant == doc.name) {
-                            
-                               console.log(doc.name); 
-
-                           
+  collection.find().forEach(function(doc) { //using handle little forEach to go through restaurant names.
+                           if (specificRestaurant == doc.name) { 
+                            collection.find({'name': specificRestaurant}).toArray(function(err, doc){
+                            console.log(doc);
+                            });
+             
                  
     /* Task 2: Create a prompt for users to add their own restaurants.*/
      } else {
